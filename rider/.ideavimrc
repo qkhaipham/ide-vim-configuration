@@ -1,0 +1,114 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" Source your .vimrc
+" source ~/.vimrc
+
+" Show a few lines of context around the cursor.  Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+""" Map leader to space ---------------------
+""" Making sure space is not mapped to anything beforehand
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+""" Map jk to esc in insert mode
+inoremap jk <Esc>
+""" Remap Ctrl+j to arrow down
+nnoremap <C-j> <Down>
+""" Remap Ctrl+k to arrow up
+nnoremap <C-k> <Up>
+""" Remap Ctrl+h to arrow down
+nnoremap <C-h> <Left>
+""" Remap Ctrl+l to arrow down
+nnoremap <C-l> <Right>
+
+""" always center cursor after jumping up or down
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
+xnoremap p "_dP
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+set relativenumber
+set number
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+""" Mappings --------------------------------
+"map <leader>f <Plug>(easymotion-s)
+"map <leader>e <Plug>(easymotion-f)
+map <leader><leader> <Action>(ShowIntentionActions)
+map gi <Action>(ReSharperGotoImplementation)
+map gd <Action>(GotoDeclaration)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <leader>r <Action>(RenameElement)
+map <leader>f <Action>(GotoFile)
+map <leader>g <Action>(ActivateCommitToolWindow)
+map <leader>e <Action>(GotoNextError)
+map <leader>E <Action>(GoToPreviousError)
+map <leader>s <Action>(SurroundWith)
+map <leader>lt <Action>(InsertLiveTemplate)
+map <leader>u <Action>(FindUsages)
+map <leader>d <Action>(EditorDuplicate)
+map <leader>, <Action>(TextSearchAction)
+map <leader>v <Action>(IntroduceVariable)
+map <leader>cs <Action>(ChangeSignature)
+map <leader>m <Action>(ExtractMethod)
+map <leader>na <Action>(RiderNuGetQuickListPopupAction)
+map <leader>n <Action>(ActivateNuGetToolWindow)
+map <leader>o <Action>(Move)
+map <leader>t <Action<(GotoTypeDeclaration)
+map <leader>tr <Action>(RiderUnitTestRunContextAction)
+map <leader>td <Action>(RiderUnitTestDebugContextAction)
+map <leader>ta <Action>(RiderUnitTestRunSolutionAction)
+map <leader>tl <Action>(RiderUnitTestRepeatPreviousRunAction)
+map <leader>tt <Action>(ActivateUnitTestsToolWindow)
+map <leader>/ <Action>(CommentByLineCommentCR)
+map <leader>b <Action>(BuildWholeSolutionAction)
+map <leader>l <Action>(JumpToLastChange)
+map <leader>, <Action>(RecentFiles)
+map <leader>h <Action>(MoveElementLeft)
+map <leader>j <Action>(MoveStatementDown)
+map <leader>k <Action>(MoveStatementUp)
+map <leader>l <Action>(MoveElementRight)
+map ] <Action>(MethodDown)
+map [ <Action>(MethodUp)
