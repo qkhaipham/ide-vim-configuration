@@ -1,0 +1,38 @@
+-- Target folder
+set targetFolderPOSIX to "/Users/khai/projects/" -- include trailing slash!
+set targetFolderAlias to POSIX file targetFolderPOSIX as alias
+
+-- Track open folder windows
+set folderAlreadyOpen to false
+set finderIsFrontmost to false
+
+-- Check if folder is open in Finder
+tell application "Finder"
+	repeat with w in every Finder window
+		try
+			set winPath to POSIX path of (target of w as alias)
+			if winPath starts with targetFolderPOSIX then
+				set folderAlreadyOpen to true
+			end if
+		end try
+	end repeat
+end tell
+
+-- Check if Finder is frontmost
+tell application "System Events"
+	set finderIsFrontmost to (name of first application process whose frontmost is true) is "Finder"
+end tell
+
+-- Open or activate behavior
+if not folderAlreadyOpen then
+	-- Folder not open → open it
+	tell application "Finder"
+		activate
+		open targetFolderAlias
+	end tell
+else if not finderIsFrontmost then
+	-- Folder is open, but Finder is not frontmost → activate Finder
+	tell application "Finder"
+		activate
+	end tell
+end if

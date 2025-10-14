@@ -1,0 +1,18 @@
+set appName to "Visual Studio Code"
+tell application "System Events"
+	set appList to (name of every process) -- Get list of running apps
+end tell
+
+if appList contains appName then
+	tell application appName
+		if frontmost then
+			tell application "System Events" to set visible of process appName to false -- Hide the app
+		else
+			activate -- Bring to front if running
+		end if
+	end tell
+else
+	tell application appName
+		activate -- Launch the app
+	end tell
+end if
